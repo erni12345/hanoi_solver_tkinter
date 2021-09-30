@@ -1,8 +1,12 @@
 """
 Visualisation du jeu/probleme de la Tours de Hanoi, resolution par recursivite.
 
+Possibilite de choisir les tailles des disques dans l'interface, remplir avec des espaces, odre pas important.
+
+
 """
 
+#Modules import
 from hanoi_vision import Visualisation_hanoi
 import tkinter as tk
 
@@ -94,17 +98,32 @@ def test2():
     deplace2disques(hanoi, v, 0, 2, 1)
 
 def test3():
-    deplace_disques(len(set_matrix()[0]),set_matrix(), v,0,1,2)
+    deplace_disques(len(set_matrix()[0]),set_matrix(), v,0,2,1)
     
 
+
+
+#Fonctions Tkinter
 def start():
+    """
+    Cree nouvelle matrice et commence le programme
+    """
     set_matrix()
     test3()
 
 def restart():
+    """
+    Remet les disques dans la premiere tour
+    """
     v.mise_a_jour(set_matrix())
 
 def set_matrix():
+    """
+    Prend les chiffres dans l'input et les transformes en matrice jouable
+
+    Returns:
+        [matrice, liste de liste]: matrices des trois tours
+    """
     matrix = entry.get()
     format_matrix = matrix.split()
     if format_matrix == []:
@@ -113,15 +132,20 @@ def set_matrix():
     format_matrix.sort(reverse=True)
     hanoi = [[x for x in format_matrix],[],[]]
     return hanoi
-#Autres
 
-start_button = tk.Button(v.visu, text = "Start", command = start)
-start_button.pack()
 
-restart_button = tk.Button(v.visu, text = "Restart", command = restart)
-restart_button.pack()
+#UI Tkinter
 
-entry = tk.Entry(v.visu, bd = 5)
+start_button = tk.Button(v.visu, text = "Start", command = start, bg="red", height=4, width=9)
+start_button.place(x=700, y= 650)
+
+restart_button = tk.Button(v.visu, text = "Restart", command = restart, bg="purple", height=4, width=9)
+restart_button.place(x=10, y= 650)
+
+entry_default = tk.StringVar(v.visu, value="5 4 3 2 1")
+entry = tk.Entry(v.visu, bd = 5, textvariable=entry_default)
 entry.pack()
+
+v.visu.resizable(False, False)
 
 v.visu.mainloop()

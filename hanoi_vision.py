@@ -28,8 +28,9 @@ class Visualisation_hanoi:
         self.monCanvas.create_rectangle(15,500,255,520,fill="black")
         self.monCanvas.create_rectangle(285,500,525,520,fill="black")
         self.monCanvas.create_rectangle(545,500,785,520,fill="black")
-        self.w = tk.Scale(self.visu, from_=0, to_=10, orient=HORIZONTAL)
+        self.w = tk.Scale(self.visu, from_=0, to_=10, orient=HORIZONTAL, label="Vitesse")
         self.w.pack()
+
         for i in range(len(hanoi)):
             centre=[135,405,665]
             for j in range(len(hanoi[i])):
